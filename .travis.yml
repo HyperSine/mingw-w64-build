@@ -1,0 +1,9 @@
+os: linux
+dist: bionic
+
+install:
+  - sudo ./libraries/build-essential.sh
+
+script:
+  - ./build.sh toolchain --target=i686-w64-mingw32 --exceptions-model=dwarf --jobs=2
+  - ./build.sh MinGW-w64 --host=i686-w64-mingw32 --target=i686-w64-mingw32 --exceptions-model=dwarf --threads-model=posix --enable-languages=c,c++,fortran --jobs=2
