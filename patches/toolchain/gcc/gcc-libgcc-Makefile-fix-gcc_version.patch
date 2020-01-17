@@ -1,0 +1,21 @@
+diff -ru gcc-9.2.0-origin/libgcc/Makefile.in gcc-9.2.0/libgcc/Makefile.in
+--- gcc-9.2.0-origin/libgcc/Makefile.in	2020-01-15 04:16:48.434443869 +0000
++++ gcc-9.2.0/libgcc/Makefile.in	2020-01-15 06:27:59.394482758 +0000
+@@ -199,7 +199,7 @@
+ STRIP_FOR_TARGET = $(STRIP)
+ 
+ # Directory in which the compiler finds libraries etc.
+-libsubdir = $(libdir)/gcc/$(real_host_noncanonical)/$(version)@accel_dir_suffix@
++libsubdir = $(libdir)/gcc/$(real_host_noncanonical)/$(gcc_version)@accel_dir_suffix@
+ # Used to install the shared libgcc.
+ slibdir = @slibdir@
+ # Maybe used for DLLs on Windows targets.
+@@ -227,7 +227,7 @@
+ export toolexecdir
+ export toolexeclibdir
+ 
+-version := $(shell @get_gcc_base_ver@ $(srcdir)/../gcc/BASE-VER)
++gcc_version := $(shell @get_gcc_base_ver@ $(srcdir)/../gcc/BASE-VER)
+ 
+ ifeq ($(decimal_float),yes)
+ ifeq ($(enable_decimal_float),bid)

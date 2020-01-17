@@ -1,0 +1,123 @@
+diff -ru gdb-8.3.1-origin/gdb/coffread.c gdb-8.3.1/gdb/coffread.c
+--- gdb-8.3.1-origin/gdb/coffread.c	2020-01-03 07:28:31.316280487 +0000
++++ gdb-8.3.1/gdb/coffread.c	2020-01-03 07:29:17.332435981 +0000
+@@ -565,7 +565,7 @@
+   struct coff_symfile_info *info;
+   bfd *abfd = objfile->obfd;
+   coff_data_type *cdata = coff_data (abfd);
+-  char *filename = bfd_get_filename (abfd);
++  const char *filename = bfd_get_filename (abfd);
+   int val;
+   unsigned int num_symbols;
+   int symtab_offset;
+diff -ru gdb-8.3.1-origin/gdb/dbxread.c gdb-8.3.1/gdb/dbxread.c
+--- gdb-8.3.1-origin/gdb/dbxread.c	2020-01-03 07:28:31.304280445 +0000
++++ gdb-8.3.1/gdb/dbxread.c	2020-01-03 07:31:02.960777108 +0000
+@@ -587,7 +587,7 @@
+ {
+   int val;
+   bfd *sym_bfd = objfile->obfd;
+-  char *name = bfd_get_filename (sym_bfd);
++  const char *name = bfd_get_filename (sym_bfd);
+   asection *text_sect;
+   unsigned char size_temp[DBX_STRINGTAB_SIZE_SIZE];
+   struct dbx_symfile_info *dbx;
+@@ -2947,7 +2947,7 @@
+ {
+   int val;
+   bfd *sym_bfd = objfile->obfd;
+-  char *name = bfd_get_filename (sym_bfd);
++  const char *name = bfd_get_filename (sym_bfd);
+   unsigned int stabsize;
+ 
+   DBX_TEXT_ADDR (objfile) = textaddr;
+@@ -3030,7 +3030,7 @@
+ {
+   int val;
+   bfd *sym_bfd = objfile->obfd;
+-  char *name = bfd_get_filename (sym_bfd);
++  const char *name = bfd_get_filename (sym_bfd);
+ 
+   /* Find the first and last text address.  dbx_symfile_read seems to
+      want this.  */
+@@ -3106,7 +3106,7 @@
+ {
+   int val;
+   bfd *sym_bfd = objfile->obfd;
+-  char *name = bfd_get_filename (sym_bfd);
++  const char *name = bfd_get_filename (sym_bfd);
+   asection *stabsect;
+   asection *stabstrsect;
+   asection *text_sect;
+diff -ru gdb-8.3.1-origin/gdb/gdb_bfd.c gdb-8.3.1/gdb/gdb_bfd.c
+--- gdb-8.3.1-origin/gdb/gdb_bfd.c	2020-01-03 07:28:31.464280997 +0000
++++ gdb-8.3.1/gdb/gdb_bfd.c	2020-01-03 07:31:52.000928905 +0000
+@@ -504,7 +504,7 @@
+ gdb_bfd_close_or_warn (struct bfd *abfd)
+ {
+   int ret;
+-  char *name = bfd_get_filename (abfd);
++  const char *name = bfd_get_filename (abfd);
+ 
+   bfd_map_over_sections (abfd, free_one_bfd_section, NULL);
+ 
+diff -ru gdb-8.3.1-origin/gdb/solib.c gdb-8.3.1/gdb/solib.c
+--- gdb-8.3.1-origin/gdb/solib.c	2020-01-03 07:28:31.316280487 +0000
++++ gdb-8.3.1/gdb/solib.c	2020-01-03 07:32:24.745028215 +0000
+@@ -1299,7 +1299,7 @@
+ 
+   for (so = so_list_head; so != NULL; so = so->next)
+     {
+-      char *found_pathname = NULL;
++      const char *found_pathname = NULL;
+       int was_loaded = so->symbols_loaded;
+       symfile_add_flags add_flags = SYMFILE_DEFER_BP_RESET;
+ 
+diff -ru gdb-8.3.1-origin/gdb/symfile.c gdb-8.3.1/gdb/symfile.c
+--- gdb-8.3.1-origin/gdb/symfile.c	2020-01-03 07:28:31.460280984 +0000
++++ gdb-8.3.1/gdb/symfile.c	2020-01-03 07:32:43.425084174 +0000
+@@ -2556,7 +2556,7 @@
+ 	  /* Clean up any state BFD has sitting around.  */
+ 	  {
+ 	    gdb_bfd_ref_ptr obfd (objfile->obfd);
+-	    char *obfd_filename;
++	    const char *obfd_filename;
+ 
+ 	    obfd_filename = bfd_get_filename (objfile->obfd);
+ 	    /* Open the new BFD before freeing the old one, so that
+diff -ru gdb-8.3.1-origin/gdb/solib-aix.c gdb-8.3.1/gdb/solib-aix.c
+--- gdb-8.3.1-origin/gdb/solib-aix.c	2020-01-03 08:20:22.607358477 +0000
++++ gdb-8.3.1/gdb/solib-aix.c	2020-01-03 08:21:16.319085128 +0000
+@@ -688,7 +688,7 @@
+      along with appended parenthesized member name in order to allow commands
+      listing all shared libraries to display.  Otherwise, we would only be
+      displaying the name of the archive member object.  */
+-  xfree (bfd_get_filename (object_bfd.get ()));
++  xfree ((char*)bfd_get_filename (object_bfd.get ()));
+   object_bfd->filename = xstrprintf ("%s%s",
+                                      bfd_get_filename (archive_bfd.get ()),
+ 				     sep);
+diff -ru gdb-8.3.1-origin/gdb/solib-darwin.c gdb-8.3.1/gdb/solib-darwin.c
+--- gdb-8.3.1-origin/gdb/solib-darwin.c	2020-01-03 08:20:22.415359516 +0000
++++ gdb-8.3.1/gdb/solib-darwin.c	2020-01-03 08:22:56.666655816 +0000
+@@ -680,7 +680,7 @@
+   /* The current filename for fat-binary BFDs is a name generated
+      by BFD, usually a string containing the name of the architecture.
+      Reset its value to the actual filename.  */
+-  xfree (bfd_get_filename (res.get ()));
++  xfree ((char*)bfd_get_filename (res.get ()));
+   res->filename = xstrdup (pathname);
+ 
+   return res;
+diff -ru gdb-8.3.1-origin/gdb/symfile-mem.c gdb-8.3.1/gdb/symfile-mem.c
+--- gdb-8.3.1-origin/gdb/symfile-mem.c	2020-01-03 08:20:22.483359146 +0000
++++ gdb-8.3.1/gdb/symfile-mem.c	2020-01-03 08:23:51.766459403 +0000
+@@ -101,7 +101,7 @@
+   /* Manage the new reference for the duration of this function.  */
+   gdb_bfd_ref_ptr nbfd_holder = gdb_bfd_ref_ptr::new_reference (nbfd);
+ 
+-  xfree (bfd_get_filename (nbfd));
++  xfree ((char*)bfd_get_filename (nbfd));
+   if (name == NULL)
+     nbfd->filename = xstrdup ("shared object read from target memory");
+   else

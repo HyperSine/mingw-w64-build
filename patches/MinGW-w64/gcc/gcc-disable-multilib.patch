@@ -1,0 +1,15 @@
+diff -ru gcc-9.2.0-origin/gcc/config/i386/t-mingw-w32 gcc-9.2.0/gcc/config/i386/t-mingw-w32
+--- gcc-9.2.0-origin/gcc/config/i386/t-mingw-w32	2020-01-15 04:16:52.014443825 +0000
++++ gcc-9.2.0/gcc/config/i386/t-mingw-w32	2020-01-16 10:34:26.303720000 +0000
+@@ -1,3 +0,0 @@
+-MULTILIB_OPTIONS = m64/m32
+-MULTILIB_DIRNAMES = 64 32
+-MULTILIB_OSDIRNAMES = ../lib64 ../lib
+
+diff -ru gcc-9.2.0-origin/gcc/config/i386/t-mingw-w64 gcc-9.2.0/gcc/config/i386/t-mingw-w64
+--- gcc-9.2.0-origin/gcc/config/i386/t-mingw-w64	2020-01-15 04:16:52.014443825 +0000
++++ gcc-9.2.0/gcc/config/i386/t-mingw-w64	2020-01-16 10:34:26.303720000 +0000
+@@ -1,3 +0,0 @@
+-MULTILIB_OPTIONS = m64/m32
+-MULTILIB_DIRNAMES = 64 32
+-MULTILIB_OSDIRNAMES = ../lib ../lib32

@@ -1,0 +1,24 @@
+diff -r -u ./a/libgcc/config/i386/cygming-crtbegin.c ./b/libgcc/config/i386/cygming-crtbegin.c
+--- ./a/libgcc/config/i386/cygming-crtbegin.c	2019-12-26 09:11:37.119978295 +0000
++++ ./b/libgcc/config/i386/cygming-crtbegin.c	2019-12-26 09:16:11.880772759 +0000
+@@ -79,7 +79,7 @@
+    register/deregister it with the exception handling library code.  */
+ #if DWARF2_UNWIND_INFO
+ static EH_FRAME_SECTION_CONST char __EH_FRAME_BEGIN__[]
+-  __attribute__((used, section(__LIBGCC_EH_FRAME_SECTION_NAME__), aligned(4)))
++  __attribute__((used, section(EH_FRAME_SECTION_NAME), aligned(4)))
+   = { };
+ 
+ static struct object obj;
+diff -r -u ./a/libgcc/config/i386/cygming-crtend.c ./b/libgcc/config/i386/cygming-crtend.c
+--- ./a/libgcc/config/i386/cygming-crtend.c	2019-12-26 09:11:37.119978295 +0000
++++ ./b/libgcc/config/i386/cygming-crtend.c	2019-12-26 09:16:37.096850160 +0000
+@@ -48,7 +48,7 @@
+    this would be the 'length' field in a real FDE.  */
+ 
+ static EH_FRAME_SECTION_CONST int __FRAME_END__[]
+-  __attribute__ ((used,  section(__LIBGCC_EH_FRAME_SECTION_NAME__),
++  __attribute__ ((used,  section(EH_FRAME_SECTION_NAME),
+ 		  aligned(4)))
+   = { 0 };
+ #endif

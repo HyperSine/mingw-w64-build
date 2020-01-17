@@ -1,0 +1,31 @@
+#
+# from https://sourceforge.net/p/mingw-w64/mailman/message/36462235/
+#
+diff --git a/mingw-w64-crt/configure.ac b/mingw-w64-crt/configure.ac
+index b388cb20..f2e0360e 100644
+--- a/mingw-w64-crt/configure.ac
++++ b/mingw-w64-crt/configure.ac
+@@ -400,19 +400,19 @@ AC_MSG_RESULT([Level $warning_level])
+ AS_CASE([$warning_level],
+   [0],[ADD_C_CXX_WARNING_FLAGS="-Wall"],
+   [1],[
+-    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra"
++    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wno-expansion-to-defined"
+     ADD_C_ONLY_WARNING_FLAGS="-Wimplicit-function-declaration"],
+   [2],[
+-    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline" 
++    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wno-expansion-to-defined -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline" 
+     ADD_C_ONLY_WARNING_FLAGS="-Wimplicit-function-declaration"],
+   [3],[
+-    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline" 
++    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wno-expansion-to-defined -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline" 
+     ADD_C_ONLY_WARNING_FLAGS="-Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes"],
+   [4],[
+-    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wformat -Wstrict-aliasing=2 -Wsystem-headers -Wshadow -Wmissing-declarations -Wpacked -Winline -Werror -pedantic" 
++    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wno-expansion-to-defined -Wformat -Wstrict-aliasing=2 -Wsystem-headers -Wshadow -Wmissing-declarations -Wpacked -Winline -Werror -pedantic" 
+     ADD_C_ONLY_WARNING_FLAGS="-Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes"],
+   [5],[
+-    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wformat -Wstrict-aliasing=2 -Wsystem-headers -Wshadow -Wmissing-declarations -Wpacked -Wredundant-decls -Winline -Werror -Wfatal-errors -pedantic -pedantic-errors" 
++    ADD_C_CXX_WARNING_FLAGS="-Wall -Wextra -Wno-expansion-to-defined -Wformat -Wstrict-aliasing=2 -Wsystem-headers -Wshadow -Wmissing-declarations -Wpacked -Wredundant-decls -Winline -Werror -Wfatal-errors -pedantic -pedantic-errors" 
+     ADD_C_ONLY_WARNING_FLAGS="-Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes"]
+    )
