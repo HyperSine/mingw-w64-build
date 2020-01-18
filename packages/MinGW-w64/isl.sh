@@ -56,8 +56,8 @@ function pkg_configure() {
     if [[ ! -x ${PKG_CONFIGURE_PATH}/config.status ]]; then
         func_log_message "Configure" MinGW-w64/${SCRIPT_MINGW_W64_IDENTIFIER}/${PKG_IDENTIFIER}
 
-        mkdir -p ${PKG_CONFIGURE_PATH}
-        mkdir -p ${PKG_PREFIX_PATH}
+        func_create_directory ${PKG_CONFIGURE_PATH}
+        func_create_directory ${PKG_PREFIX_PATH}
 
         func_enter_directory ${PKG_CONFIGURE_PATH}
             ${PKG_SOURCE_PATH}/configure \
