@@ -21,7 +21,7 @@ function build_main() {
 
         func_load_toolchain ${SCRIPT_MINGW_W64_TOOLCHAIN_IDENTIFIER}
 
-            # shellcheck source=packages/libiconv.sh
+            # shellcheck source=MinGW-w64/libiconv.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/libiconv.sh
             pkg_download
             pkg_extract
@@ -32,7 +32,7 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/gmp.sh
+            # shellcheck source=MinGW-w64/gmp.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/gmp.sh
             pkg_download
             pkg_extract
@@ -43,7 +43,7 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/mpfr.sh
+            # shellcheck source=MinGW-w64/mpfr.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/mpfr.sh
             pkg_download
             pkg_extract
@@ -54,7 +54,7 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/mpc.sh
+            # shellcheck source=MinGW-w64/mpc.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/mpc.sh
             pkg_download
             pkg_extract
@@ -65,7 +65,7 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/isl.sh
+            # shellcheck source=MinGW-w64/isl.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/isl.sh
             pkg_download
             pkg_extract
@@ -76,7 +76,7 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/mingw-w64.sh
+            # shellcheck source=MinGW-w64/mingw-w64.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/mingw-w64.sh
             pkg_download
             pkg_extract
@@ -115,7 +115,7 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/binutils.sh
+            # shellcheck source=MinGW-w64/binutils.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/binutils.sh
             pkg_download
             pkg_extract
@@ -126,7 +126,7 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/gcc.sh
+            # shellcheck source=MinGW-w64/gcc.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/gcc.sh
             pkg_download
             pkg_extract
@@ -137,7 +137,73 @@ function build_main() {
             fi
             pkg_clean_env
 
-            # shellcheck source=packages/make.sh
+            # shellcheck source=MinGW-w64/termcap.sh
+            source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/termcap.sh   # required by readline
+            pkg_download
+            pkg_extract
+            if [[ ${SCRIPT_OPTION_FETCH_ONLY} == "no" ]]; then
+                pkg_configure
+                pkg_build
+                pkg_final
+            fi
+            pkg_clean_env
+
+            # shellcheck source=MinGW-w64/expat.sh
+            source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/expat.sh     # required by gdb
+            pkg_download
+            pkg_extract
+            if [[ ${SCRIPT_OPTION_FETCH_ONLY} == "no" ]]; then
+                pkg_configure
+                pkg_build
+                pkg_final
+            fi
+            pkg_clean_env
+
+            # shellcheck source=MinGW-w64/readline.sh
+            source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/readline.sh  # requires termcap, required by gdb
+            pkg_download
+            pkg_extract
+            if [[ ${SCRIPT_OPTION_FETCH_ONLY} == "no" ]]; then
+                pkg_configure
+                pkg_build
+                pkg_final
+            fi
+            pkg_clean_env
+
+            # shellcheck source=MinGW-w64/xz.sh
+            source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/xz.sh  # requires termcap, required by gdb
+            pkg_download
+            pkg_extract
+            if [[ ${SCRIPT_OPTION_FETCH_ONLY} == "no" ]]; then
+                pkg_configure
+                pkg_build
+                pkg_final
+            fi
+            pkg_clean_env
+
+            # shellcheck source=MinGW-w64/python.sh
+            source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/python.sh
+            pkg_download
+            pkg_extract
+            if [[ ${SCRIPT_OPTION_FETCH_ONLY} == "no" ]]; then
+                pkg_configure
+                pkg_build
+                pkg_final
+            fi
+            pkg_clean_env
+
+            # shellcheck source=MinGW-w64/gdb.sh
+            source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/gdb.sh
+            pkg_download
+            pkg_extract
+            if [[ ${SCRIPT_OPTION_FETCH_ONLY} == "no" ]]; then
+                pkg_configure
+                pkg_build
+                pkg_final
+            fi
+            pkg_clean_env
+
+            # shellcheck source=MinGW-w64/make.sh
             source ${SCRIPT_MINGW_W64_PACKAGES_PATH}/make.sh
             pkg_download
             pkg_extract
