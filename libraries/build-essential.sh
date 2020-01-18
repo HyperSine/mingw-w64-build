@@ -16,4 +16,5 @@ apt-get -y install \
     wget gpg \
     m4 \
     make automake automake-1.15 \
-    gcc g++
+    gcc g++ \
+    zip unzip msitools
