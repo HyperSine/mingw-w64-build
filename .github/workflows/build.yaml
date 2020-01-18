@@ -1,0 +1,22 @@
+name: MinGW-w64 toolchain Build
+
+on: [push]
+
+jobs:
+  main:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - continue-on-error: false
+      - uses: actions/checkout@v1
+      - name: Install build essential.
+        run: |
+          sudo ./libraries/build-essential.sh
+      - name: Build toolchain
+        run: |
+          ./build.sh toolchain --target=i686-w64-mingw32 --exceptions-model=dwarf --jobs=2
+      - name: Build MinGW-w64 toolchain
+        run: |
+          ./build.sh MinGW-w64 --host=i686-w64-mingw32 --target=i686-w64-mingw32 --exceptions-model=dwarf --threads-model=posix --enable-languages=c,c++,fortran --jobs=2
+        
