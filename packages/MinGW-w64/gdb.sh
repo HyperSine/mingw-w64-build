@@ -112,7 +112,7 @@ function pkg_configure() {
                 --disable-gdbtk \
                 CFLAGS="-g -O2 -Wno-expansion-to-defined -I${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/readline/include" \
                 CXXFLAGS="-g -O2 -Wno-expansion-to-defined -I${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/readline/include" \
-                LDFLAGS="-L${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/readline/lib $([[ $(func_get_arch ${PKG_HOST}) == "i686" ]] && echo "-Wl,--large-address-aware")"
+                LDFLAGS="-lssp -L${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/readline/lib $([[ $(func_get_arch ${PKG_HOST}) == "i686" ]] && echo "-Wl,--large-address-aware")"
         func_leave_directory
     fi
 }
