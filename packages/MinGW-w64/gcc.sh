@@ -150,7 +150,16 @@ function pkg_build() {
 }
 
 function pkg_final() {
-    :
+    local PKG_TARGET=${SCRIPT_OPTION_TARGET}
+    local PKG_PREFIX_PATH=${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}
+
+    func_log_message "Final" MinGW-w64/${SCRIPT_MINGW_W64_IDENTIFIER}/${PKG_IDENTIFIER}
+
+    for FILE in ${PKG_PREFIX_PATH}/lib/gcc/${PKG_TARGET}/${PKG_VERSION}/*.dll; do
+        mv -fv \
+            ${FILE} \
+            ${PKG_PREFIX_PATH}/bin
+    done
 }
 
 function pkg_clean_env() {
