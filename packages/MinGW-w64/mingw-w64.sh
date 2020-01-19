@@ -359,13 +359,18 @@ function pkg_build() {
 
 function pkg_final() {
     # $1 - type
-    # $2 - HOST
     case $1 in
         "mingw-w64")
             :
         ;;
         "winpthreads")
-            :
+            local SUBPKG_PREFIX_PATH=${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/${SCRIPT_OPTION_TARGET}
+
+            func_log_message "Final" MinGW-w64/${SCRIPT_MINGW_W64_IDENTIFIER}/${PKG_IDENTIFIER}/mingw-w64-libraries/winpthreads
+
+            mv -fv \
+                ${SUBPKG_PREFIX_PATH}/bin/libwinpthread*.dll \
+                ${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/bin
         ;;
         "libmangle")
             :
