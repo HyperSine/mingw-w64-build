@@ -86,7 +86,7 @@ function pkg_configure() {
                 --enable-plugins \
                 --enable-gold \
                 --enable-install-libiberty \
-                --with-libiconv-prefix=${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER} \
+                --with-libiconv-prefix=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/libiconv \
                 --disable-rpath \
                 --disable-nls \
                 --enable-static \

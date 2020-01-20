@@ -140,7 +140,7 @@ function pkg_configure() {
             local SUBPKG_HOST=${SCRIPT_OPTION_HOST}
             local SUBPKG_SOURCE_PATH=${SCRIPT_MINGW_W64_SOURCES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/${PKG_IDENTIFIER}/mingw-w64-libraries/libmangle
             local SUBPKG_CONFIGURE_PATH=${SCRIPT_MINGW_W64_CONFIGURES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/${PKG_IDENTIFIER}/libmangle
-            local SUBPKG_PREFIX_PATH=${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/${SCRIPT_OPTION_TARGET}
+            local SUBPKG_PREFIX_PATH=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/libmangle
 
             if [[ ${SCRIPT_OPTION_FORCE_UPDATE} == "yes" && -d ${SUBPKG_CONFIGURE_PATH} ]]; then
                 rm -rfv ${SUBPKG_CONFIGURE_PATH}
@@ -182,7 +182,7 @@ function pkg_configure() {
                         --build=${SUBPKG_BUILD} \
                         --host=${SUBPKG_HOST} \
                         --prefix=${SUBPKG_PREFIX_PATH} \
-                        --with-mangle=${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/${SCRIPT_OPTION_TARGET} \
+                        --with-mangle=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/libmangle \
                         CFLAGS="-g -O2 -Wno-expansion-to-defined"
                 func_leave_directory
             fi
