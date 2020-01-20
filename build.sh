@@ -233,6 +233,7 @@ case $1 in
         # shellcheck source=packages/build-MinGW-w64.sh
         source ${SCRIPT_PACKAGES_PATH}/build-MinGW-w64.sh
         build_main
+        build_pack
         build_clean_env
     ;;
     *)

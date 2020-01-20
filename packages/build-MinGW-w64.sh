@@ -215,13 +215,26 @@ function build_main() {
             pkg_clean_env
 
         func_unload_toolchain
+
+        touch ${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/MinGW-w64.ready
+
+        func_log_success "SUCCESS" "MinGW-w64 ${SCRIPT_MINGW_W64_IDENTIFIER} has been built successfully"
     else
         func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> build_main: toolchain ${SCRIPT_MINGW_W64_TOOLCHAIN_IDENTIFIER} is not found"
     fi
 }
 
+function build_pack() {
+    func_enter_directory ${SCRIPT_MINGW_W64_BUILDS_PATH}
+
+    zip -9 -r ${SCRIPT_MINGW_W64_IDENTIFIER}.zip ${SCRIPT_MINGW_W64_IDENTIFIER}/
+
+    func_leave_directory
+}
+
 function build_clean_env() {
     unset -f build_clean_env
+    unset -f build_pack
     unset -f build_main
     unset SCRIPT_MINGW_W64_BUILDS_PATH
     unset SCRIPT_MINGW_W64_CONFIGURES_PATH
