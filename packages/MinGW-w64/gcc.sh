@@ -66,6 +66,7 @@ function pkg_extract() {
             # this gcc is crossed native compiler. --with-sysroot is meaningless, therefore will not be specified.
             # So does STANDARD_STARTFILE_PREFIX_1
             func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-disable-STANDARD_STARTFILE_PREFIX_1.patch
+            func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-undef-NATIVE_SYSTEM_HEADER_DIR.patch
         func_leave_directory
     fi
 }

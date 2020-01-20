@@ -1,0 +1,14 @@
+diff -ru gcc-9.2.0-origin/gcc/config/i386/mingw32.h gcc-9.2.0/gcc/config/i386/mingw32.h
+--- gcc-9.2.0-origin/gcc/config/i386/mingw32.h	2020-01-20 13:54:24.879563503 +0000
++++ gcc-9.2.0/gcc/config/i386/mingw32.h	2020-01-20 13:55:10.187585537 +0000
+@@ -192,10 +192,7 @@
+ #define STANDARD_STARTFILE_PREFIX_2 ""
+ #endif
+ 
+-/* For native mingw-version we need to take care that NATIVE_SYSTEM_HEADER_DIR
+-   macro contains POSIX-style path.  See bug 52947.  */
+ #undef NATIVE_SYSTEM_HEADER_DIR
+-#define NATIVE_SYSTEM_HEADER_DIR "/mingw/include"
+ 
+ /* Output STRING, a string representing a filename, to FILE.
+    We canonicalize it to be in Unix format (backslashes are replaced
