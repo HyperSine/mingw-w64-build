@@ -1,0 +1,11 @@
+--- gcc-9.2.0/gcc/config/i386/mingw32.h	2019-01-01 12:31:55.000000000 +0000
++++ gcc-9.2.0/gcc/config/i386/mingw32.h	2020-01-20 07:44:16.870111373 +0000
+@@ -186,7 +186,7 @@
+ 
+ /* Override startfile prefix defaults.  */
+ #ifndef STANDARD_STARTFILE_PREFIX_1
+-#define STANDARD_STARTFILE_PREFIX_1 "/mingw/lib/"
++#define STANDARD_STARTFILE_PREFIX_1 ""
+ #endif
+ #ifndef STANDARD_STARTFILE_PREFIX_2
+ #define STANDARD_STARTFILE_PREFIX_2 ""

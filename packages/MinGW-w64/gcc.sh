@@ -62,6 +62,10 @@ function pkg_extract() {
             #func_apply_patch -p2 ${PKG_PATCH_PATH}/gcc-9.2.0-use-EH_FRAME_SECTION_NAME.patch
             func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-libgcc-Makefile-fix-gcc_version.patch
             func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-disable-multilib.patch
+
+            # this gcc is crossed native compiler. --with-sysroot is meaningless, therefore will not be specified.
+            # So does STANDARD_STARTFILE_PREFIX_1
+            func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-disable-STANDARD_STARTFILE_PREFIX_1.patch
         func_leave_directory
     fi
 }
