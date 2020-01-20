@@ -68,7 +68,7 @@ function pkg_configure() {
                 --build=${PKG_BUILD} \
                 --host=${PKG_HOST} \
                 --prefix=${PKG_PREFIX_PATH} \
-                --with-gmp=${PKG_PREFIX_PATH} \
+                --with-gmp=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/gmp \
                 --enable-static \
                 --disable-shared
         func_leave_directory
