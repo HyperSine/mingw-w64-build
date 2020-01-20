@@ -80,7 +80,6 @@ function pkg_configure() {
                 --host=${PKG_HOST} \
                 --target=${PKG_TARGET} \
                 --prefix=${PKG_PREFIX_PATH} \
-                --with-sysroot=${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER} \
                 --disable-multilib \
                 --enable-lto \
                 --enable-plugins \
