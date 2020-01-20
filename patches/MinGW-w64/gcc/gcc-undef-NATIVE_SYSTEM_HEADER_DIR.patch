@@ -1,7 +1,15 @@
 diff -ru gcc-9.2.0-origin/gcc/config/i386/mingw32.h gcc-9.2.0/gcc/config/i386/mingw32.h
---- gcc-9.2.0-origin/gcc/config/i386/mingw32.h	2020-01-20 13:54:24.879563503 +0000
-+++ gcc-9.2.0/gcc/config/i386/mingw32.h	2020-01-20 13:55:10.187585537 +0000
-@@ -192,10 +192,7 @@
+--- gcc-9.2.0-origin/gcc/config/i386/mingw32.h	2020-01-20 15:37:50.959706874 +0000
++++ gcc-9.2.0/gcc/config/i386/mingw32.h	2020-01-20 15:38:41.255677765 +0000
+@@ -78,7 +78,6 @@
+ #endif
+ 
+ #undef NATIVE_SYSTEM_HEADER_COMPONENT
+-#define NATIVE_SYSTEM_HEADER_COMPONENT "MINGW"
+ 
+ #undef CPP_SPEC
+ #define CPP_SPEC "%{posix:-D_POSIX_SOURCE} %{mthreads:-D_MT} " \
+@@ -192,10 +191,7 @@
  #define STANDARD_STARTFILE_PREFIX_2 ""
  #endif
  
