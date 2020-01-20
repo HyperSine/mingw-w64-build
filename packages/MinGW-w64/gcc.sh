@@ -65,8 +65,14 @@ function pkg_extract() {
 
             # this gcc is crossed native compiler. --with-sysroot is meaningless, therefore will not be specified.
             # So does STANDARD_STARTFILE_PREFIX_1
+            # So does NATIVE_SYSTEM_HEADER_DIR and NATIVE_SYSTEM_HEADER_COMPONENT
             func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-disable-STANDARD_STARTFILE_PREFIX_1.patch
             func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-undef-NATIVE_SYSTEM_HEADER_DIR.patch
+
+            # LOCAL_INCLUDE_DIR="$(local_includedir)"
+            # According to gcc/config/i386/x-mingw32, LOCAL_INCLUDE_DIR is not started with sysroot
+            # So set `add_sysroot` field to `0` which is as known as `false`.
+            func_apply_patch -p1 ${PKG_PATCH_PATH}/gcc-LOCAL_INCLUDE_DIR-add_sysroot-to-false.patch
         func_leave_directory
     fi
 }

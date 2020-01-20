@@ -1,0 +1,13 @@
+--- gcc-9.2.0-origin/gcc/cppdefault.c	2020-01-20 15:37:54.355704836 +0000
++++ gcc-9.2.0/gcc/cppdefault.c	2020-01-20 17:27:40.009507089 +0000
+@@ -61,8 +61,8 @@
+ #endif
+ #ifdef LOCAL_INCLUDE_DIR
+     /* /usr/local/include comes before the fixincluded header files.  */
+-    { LOCAL_INCLUDE_DIR, 0, 0, 1, 1, 2 },
+-    { LOCAL_INCLUDE_DIR, 0, 0, 1, 1, 0 },
++    { LOCAL_INCLUDE_DIR, 0, 0, 1, 0, 2 },
++    { LOCAL_INCLUDE_DIR, 0, 0, 1, 0, 0 },
+ #endif
+ #ifdef PREFIX_INCLUDE_DIR
+     { PREFIX_INCLUDE_DIR, 0, 0, 1, 0, 0 },
