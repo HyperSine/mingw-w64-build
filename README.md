@@ -59,3 +59,4 @@ $ ./build.sh toolchain --target=x86_64-w64-mingw32 --exceptions-model=sjlj --job
 $ ./build.sh MinGW-w64 --arch=x86_64-w64-mingw32 --exceptions-model=sjlj --threads-model=win32 --enable-languages=c,c++,fortran --jobs=2
 ```
 
+Artifacts are in `./builds/MinGW-w64/`.
