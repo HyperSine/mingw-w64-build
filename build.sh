@@ -24,8 +24,7 @@ function show_help() {
     echo "        --fetch-only                                      Optional, default: no"
     echo "        --force-update                                    Optional, default: no"
     echo "    build.sh MinGW-w64 [options...]"
-    echo "        --host=<i686-w64-mingw32|x86_64-w64-mingw32>      Mandatory"
-    echo "        --target=<i686-w64-mingw32|x86_64-w64-mingw32>    Mandatory"
+    echo "        --arch=<i686-w64-mingw32|x86_64-w64-mingw32>      Mandatory"
     echo "        --exceptions-model=<dwarf|sjlj|seh>               Mandatory"
     echo "        --threads-model=<posix|win32>                     Mandatory"
     echo "        --enable-languages=<langs>                        Mandatory, available languages: c,c++,fortran"
@@ -129,17 +128,10 @@ case $1 in
 
         for arg in ${@:2}; do
             case $arg in
-                --host=*)
+                --arch=*)
                     SCRIPT_OPTION_HOST=${arg#*=}
+                    SCRIPT_OPTION_TARGET=${SCRIPT_OPTION_HOST}
                     case ${SCRIPT_OPTION_HOST} in
-                        "i686-w64-mingw32") true;;
-                        "x86_64-w64-mingw32") true;;
-                        *) func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> invalid argument: $arg";;
-                    esac
-                ;;
-                --target=*)
-                    SCRIPT_OPTION_TARGET=${arg#*=}
-                    case ${SCRIPT_OPTION_TARGET} in
                         "i686-w64-mingw32") true;;
                         "x86_64-w64-mingw32") true;;
                         *) func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> invalid argument: $arg";;
@@ -202,10 +194,7 @@ case $1 in
         done
 
         if [[ -z ${SCRIPT_OPTION_HOST} ]]; then
-            func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> a mandatory parameter \"--host\" is missing"
-        fi
-        if [[ -z ${SCRIPT_OPTION_TARGET} ]]; then
-            func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> a mandatory parameter \"--target\" is missing"
+            func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> a mandatory parameter \"--arch\" is missing"
         fi
         if [[ -z ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} ]]; then
             func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> a mandatory parameter \"--exceptions-model\" is missing"
@@ -217,17 +206,17 @@ case $1 in
             func_log_failure 1 "FATAL" "${BASH_SOURCE[0]} -> a mandatory parameter \"--enable-languages\" is missing"
         fi
 
-        if [[ ${SCRIPT_OPTION_TARGET} == "i686-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "dwarf" ]]; then
+        if [[ ${SCRIPT_OPTION_HOST} == "i686-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "dwarf" ]]; then
             true
-        elif [[ ${SCRIPT_OPTION_TARGET} == "i686-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "sjlj" ]]; then
+        elif [[ ${SCRIPT_OPTION_HOST} == "i686-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "sjlj" ]]; then
             true
-        elif [[ ${SCRIPT_OPTION_TARGET} == "x86_64-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "sjlj" ]]; then
+        elif [[ ${SCRIPT_OPTION_HOST} == "x86_64-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "sjlj" ]]; then
             true
-        elif [[ ${SCRIPT_OPTION_TARGET} == "x86_64-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "seh" ]]; then
+        elif [[ ${SCRIPT_OPTION_HOST} == "x86_64-w64-mingw32" && ${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL} == "seh" ]]; then
             true
         else
             func_log_failure 1 "FATAL" \
-                "${BASH_SOURCE[0]} -> \"--exceptions-model=${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL}\" is not supported for \"--target=${SCRIPT_OPTION_TARGET}\""
+                "${BASH_SOURCE[0]} -> \"--exceptions-model=${SCRIPT_OPTION_GCC_EXCEPTIONS_MODEL}\" is not supported for \"--arch=${SCRIPT_OPTION_HOST}\""
         fi
 
         # shellcheck source=packages/build-MinGW-w64.sh

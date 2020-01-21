@@ -16,8 +16,7 @@ Usage:
         --fetch-only                                      Optional, default: no
         --force-update                                    Optional, default: no
     build.sh MinGW-w64 [options...]
-        --host=<i686-w64-mingw32|x86_64-w64-mingw32>      Mandatory
-        --target=<i686-w64-mingw32|x86_64-w64-mingw32>    Mandatory
+        --arch=<i686-w64-mingw32|x86_64-w64-mingw32>      Mandatory
         --exceptions-model=<dwarf|sjlj|seh>               Mandatory
         --threads-model=<posix|win32>                     Mandatory
         --enable-languages=<langs>                        Mandatory, available languages: c,c++,fortran
@@ -30,6 +29,6 @@ Usage:
 
 ```console
 $ ./build.sh toolchain --target=i686-w64-mingw32 --exceptions-model=dwarf --jobs=2
-$ ./build.sh MinGW-w64 --host=i686-w64-mingw32 --target=i686-w64-mingw32 --exceptions-model=dwarf --threads-model=posix --enable-languages=c,c++,fortran --jobs=2
+$ ./build.sh MinGW-w64 --arch=i686-w64-mingw32 --exceptions-model=dwarf --threads-model=posix --enable-languages=c,c++,fortran --jobs=2
 ```
 
