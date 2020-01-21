@@ -130,7 +130,7 @@ function pkg_configure() {
                 --with-gnu-ld \
                 $([[ $(func_get_arch ${PKG_HOST}) == "i686" ]] && echo "--with-arch=i686 --with-tune=generic") \
                 $([[ $(func_get_arch ${PKG_HOST}) == "x86_64" ]] && echo "--with-arch=nocona --with-tune=core2") \
-                --with-libiconv-prefix=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/libiconv \
+                --with-libiconv-prefix=${SCRIPT_MINGW_W64_BUILDS_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER} \
                 --with-gmp=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/gmp \
                 --with-mpfr=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/mpfr \
                 --with-mpc=${SCRIPT_MINGW_W64_DEPENDENCIES_PATH}/${SCRIPT_MINGW_W64_IDENTIFIER}/mpc \
