@@ -229,7 +229,7 @@ function build_main() {
 function build_pack() {
     func_enter_directory ${SCRIPT_MINGW_W64_BUILDS_PATH}
 
-    zip -9 -r ${SCRIPT_MINGW_W64_IDENTIFIER}.zip ${SCRIPT_MINGW_W64_IDENTIFIER}/
+    7z a -t7z -mx=9 ${SCRIPT_MINGW_W64_IDENTIFIER}.7z ${SCRIPT_MINGW_W64_IDENTIFIER}/
 
     func_leave_directory
 }

@@ -17,4 +17,5 @@ apt-get -y install \
     m4 \
     make automake automake-1.15 \
     gcc g++ \
-    zip unzip msitools texinfo
+    zip unzip msitools texinfo \
+    p7zip-full
